@@ -55,7 +55,7 @@ public class Main {
 
   private static Integer stream5(List<Product> products) {
     List<Product> productList = products.stream()
-        .filter(prod -> prod.getTyp().equals("Book"))
+        .filter(prod -> prod.getTyp().equals(BOOK))
         .filter(prod -> prod.getPrise() <= 75)
         .filter(prod -> prod.getCreateDate().getYear() == 2022)
         .collect(Collectors.toList());
@@ -71,7 +71,7 @@ public class Main {
   }
 
   private static Product stream3(List<Product> products) {
-    List<Product> productList = valFilter(products, "Book");
+    List<Product> productList = valFilter(products, BOOK);
     return productList.stream()
         .min(Comparator.comparing(Product::getPrise))
         .orElseThrow(NoSuchElementException::new);
@@ -79,7 +79,7 @@ public class Main {
 
   private static List<Product> stream2(List<Product> products) {
     return products.stream()
-        .filter(prod -> prod.getTyp().equals("Book"))
+        .filter(prod -> prod.getTyp().equals(BOOK))
         .filter(Product::isDiscount)
         .peek(prod -> prod.setPrise(prod.getPrise() - (prod.getPrise()) / 10))
         .collect(Collectors.toList());
@@ -87,7 +87,7 @@ public class Main {
 
   private static List<Product> stream1(List<Product> products) {
     return products.stream()
-        .filter(prod -> prod.getTyp().equals("Book"))
+        .filter(prod -> prod.getTyp().equals(BOOK))
         .filter(prod -> prod.getPrise() > 250)
         .collect(Collectors.toList());
   }
