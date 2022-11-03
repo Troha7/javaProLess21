@@ -41,6 +41,10 @@ public class Main {
 
   }
 
+  /**
+   * @param products {@code List<Product>}
+   * @return Map kay = productTyp, value = List<Product>.
+   */
   private static Map<String, List<Product>> stream6(List<Product> products) {
     return products.stream()
         .map(Product::getTyp)
@@ -53,6 +57,12 @@ public class Main {
         Collectors.toList());
   }
 
+  /**
+   * @param products {@code List<Product>}
+   * <p>If this list contains {@code BOOK}, {@code Prise <= 75} and product added in this year.
+   *
+   * @return filtered and changed {@code List<Product>}.
+   */
   private static Integer stream5(List<Product> products) {
     List<Product> productList = products.stream()
         .filter(prod -> prod.getTyp().equals(BOOK))
@@ -63,6 +73,10 @@ public class Main {
         .mapToInt(Product::getPrise).sum();
   }
 
+  /**
+   * @param products {@code List<Product>}
+   * @return 3 last added products {@code List<Product>}.
+   */
   private static List<Product> stream4(List<Product> products) {
     return products.stream()
         .sorted(Comparator.comparing(Product::getCreateDate, Comparator.reverseOrder()))
@@ -70,13 +84,24 @@ public class Main {
         .collect(Collectors.toList());
   }
 
+  /**
+   * @param products {@code List<Product>}
+   * @return the cheapest {@code Product} with type {@code BOOK}.
+   * @throws NoSuchElementException if product typ not found.
+   */
   private static Product stream3(List<Product> products) {
     List<Product> productList = valFilter(products, BOOK);
     return productList.stream()
         .min(Comparator.comparing(Product::getPrise))
-        .orElseThrow(NoSuchElementException::new);
+        .orElseThrow(() -> new NoSuchElementException("Product [" + BOOK + "] not found"));
   }
 
+  /**
+   * @param products {@code List<Product>}
+   * <p>If this list contains {@code BOOK} and {@code isDiscount == true}, then apply discount 10%.
+   *
+   * @return filtered and changed {@code List<Product>}.
+   */
   private static List<Product> stream2(List<Product> products) {
     return products.stream()
         .filter(prod -> prod.getTyp().equals(BOOK))
@@ -85,6 +110,12 @@ public class Main {
         .collect(Collectors.toList());
   }
 
+  /**
+   * @param products {@code List<Product>}
+   * <p>If this list contains {@code BOOK} and {@code Prise > 250}.
+   *
+   * @return filtered and changed {@code List<Product>}.
+   */
   private static List<Product> stream1(List<Product> products) {
     return products.stream()
         .filter(prod -> prod.getTyp().equals(BOOK))
