@@ -6,14 +6,14 @@ import java.util.Objects;
 public class Product {
 
   private final String typ;
-  private Integer prise;
+  private Integer price;
 
   private final boolean discount;
   private final LocalDate createDate;
 
-  public Product(String typ, Integer prise, boolean discount, LocalDate createDate) {
+  public Product(String typ, Integer price, boolean discount, LocalDate createDate) {
     this.typ = typ;
-    this.prise = prise;
+    this.price = price;
     this.discount = discount;
     this.createDate = createDate;
   }
@@ -22,7 +22,7 @@ public class Product {
   public String toString() {
     return "{" +
         "typ='" + typ + '\'' +
-        ", prise=" + prise +
+        ", prise=" + price +
         ", discount=" + discount +
         ", createDate=" + createDate +
         '}';
@@ -32,8 +32,8 @@ public class Product {
     return typ;
   }
 
-  public Integer getPrise() {
-    return prise;
+  public Integer getPrice() {
+    return price;
   }
 
   public boolean isDiscount() {
@@ -44,8 +44,8 @@ public class Product {
     return createDate;
   }
 
-  public void setPrise(Integer prise) {
-    this.prise = prise;
+  public void setPrice(Integer prise) {
+    this.price = prise;
   }
 
   @Override
@@ -65,13 +65,13 @@ public class Product {
     if (!Objects.equals(typ, product.typ)) {
       return false;
     }
-    return Objects.equals(prise, product.prise);
+    return Objects.equals(price, product.price);
   }
 
   @Override
   public int hashCode() {
     int result = typ != null ? typ.hashCode() : 0;
-    result = 31 * result + (prise != null ? prise.hashCode() : 0);
+    result = 31 * result + (price != null ? price.hashCode() : 0);
     result = 31 * result + (discount ? 1 : 0);
     return result;
   }
